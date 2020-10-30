@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PokemonFrame from './PokemonFrame.js';
+import pokemonFrame from './pokemonFrame.js';
 import './App.css'
 
 export default class PokeList extends Component {
@@ -9,7 +9,7 @@ export default class PokeList extends Component {
                 {
                     this.props.data.length === 0 ? <>Loadering<iframe title="blah" src="https://giphy.com/embed/3o7bu3XilJ5BOiSGic" width="480" height="480" frameBorder="0" className="giphy-embed" allowFullScreen></iframe></>
                     : this.props.data.map(poke => {
-                        return <PokemonFrame 
+                        return <pokemonFrame 
                             name = {poke.pokemon}
                             key = {poke.pokemon}
                             image = {poke.url_image}

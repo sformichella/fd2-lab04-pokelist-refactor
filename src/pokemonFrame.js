@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class PokemonFrame extends Component {
+export default class pokemonFrame extends Component {
     render() {
         return (
             <div className="pokemon-frame">
