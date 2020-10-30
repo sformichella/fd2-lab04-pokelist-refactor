@@ -8,26 +8,40 @@ export default class ListPage extends Component {
 
     state = {
         pokeData: [],
-        searchInput: ''
+        searchInput: '',
+        searchParam: 'pokemon',
+        sortOrder: '',
+        sortType: '',
     }
 
     handleTextInputChange = e => {
         this.setState({
             searchInput: e.target.value
         });
-        this.fetchPokemon()
     }
 
-    componentDidMount = async () => {
-        const pokeData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.searchInput}`)
+    handleButtonSubmit = async () => {
+        await this.fetchPokemon()
+    }
 
+    handlerSortOrder = e => {
         this.setState({
-            pokeData: pokeData.body.results
+            sortOrder: e.target.value
         })
     }
 
+    handleSortType = e => {
+        this.setState({
+            sortType: e.target.value
+        })
+    }
+
+    componentDidMount = async () => {
+        await this.fetchPokemon()
+    }
+
     fetchPokemon = async () => {
-        const pokeData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.searchInput}`)
+        const pokeData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?${this.state.searchParam}=${this.state.searchInput}`)
 
         this.setState({
             pokeData: pokeData.body.results
@@ -41,10 +55,13 @@ export default class ListPage extends Component {
                 <Header title="Pokemon List"/>
                 <div className="list-page-main flex-row">
                     <ListTools 
-                        handler = {this.handleTextInputChange}
+                        inputHandler = {this.handleTextInputChange}
+                        sortTypeHanlder = {this.handlerSortType}
+                        sortOrderHandler = {this.handlerSortOrder}
+                        buttonHandler = {this.handleButtonSubmit}
                     />
                     <PokeList
-                        data={this.state.pokeData}
+                        data = {this.state.pokeData}
                     />
                 </div>
             </div>
