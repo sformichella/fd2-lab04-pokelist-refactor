@@ -6,7 +6,8 @@ export default class PokeList extends Component {
         return (
             <div className="poke-list flex-row">
                 {
-                    this.props.data.map(poke => {
+                    this.props.data.length === 0 ? 'loading!!!'
+                    : this.props.data.map(poke => {
                         return <PokemonFrame 
                             name = {poke.pokemon}
                             key = {poke.pokemon}

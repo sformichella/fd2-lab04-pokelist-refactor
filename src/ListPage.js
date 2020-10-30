@@ -26,20 +26,21 @@ export default class ListPage extends Component {
         })
     }
 
-    handleButtonSubmit = async () => {
-        await this.fetchPokemon()
-    }
-
+    
     handleSortOrder = e => {
         this.setState({
             sortOrder: e.target.value
         })
     }
-
+    
     handleSortType = e => {
         this.setState({
             sortType: e.target.value
         })
+    }
+    
+    handleButtonSubmit = async () => {
+        await this.fetchPokemon()
     }
 
     componentDidMount = async () => {
@@ -47,6 +48,10 @@ export default class ListPage extends Component {
     }
 
     fetchPokemon = async () => {
+        this.setState({
+            pokeData: []
+        })
+
         const pokeData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?${this.state.searchParam}=${this.state.searchInput}&sort=${this.state.sortType}&direction=${this.state.sortOrder}`)
 
         this.setState({
