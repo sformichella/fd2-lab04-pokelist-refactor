@@ -31,39 +31,14 @@ export default class ListPage extends Component {
     }
 
     handleSortOrder = e => {
-        
-        const order = e.target.value;
-        const type = this.state.sortType;
-        
         this.setState({
-            sortOrder: order
+            sortOrder: e.target.value
         })
-
-        this.updateDataSort(type, order)
     }
 
     handleSortType = e => {
-        const type = e.target.value;
-        const order = this.state.sortOrder;
-
         this.setState({
-            sortType: type
-        })
-
-        this.updateDataSort(type, order)
-    }
-
-    updateDataSort = (type, order) => {
-        this.setState({
-            pokeData: this.state.pokeData.sort((a, b) => {
-                if (!order) {
-                    return true
-                } else if (order === 'ascending') {
-                    return a[type] > b[type]
-                } else {
-                    return a[type] < b[type]
-                }
-            })
+            sortType: e.target.value
         })
     }
 
@@ -72,7 +47,7 @@ export default class ListPage extends Component {
     }
 
     fetchPokemon = async () => {
-        const pokeData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?${this.state.searchParam}=${this.state.searchInput}`)
+        const pokeData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?${this.state.searchParam}=${this.state.searchInput}&sort=${this.state.sortType}&direction=${this.state.sortOrder}`)
 
         this.setState({
             pokeData: pokeData.body.results

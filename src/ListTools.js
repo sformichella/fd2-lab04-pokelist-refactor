@@ -26,10 +26,10 @@ export default class ListTools extends Component {
                     />Type Two
                 </div>
                 <input onChange={this.props.inputHandler}/>
-                <button onClick={this.props.buttonHandler}>Submit</button>
                 <p>Sort By Attribute</p>
                 <div>
                     <select onChange={this.props.sortTypeChange}>
+                        <option value="">None</option>
                         <option value="pokemon">Name</option>
                         <option value="type_1">Type One</option>
                         <option value="type_2">Type Two</option>
@@ -39,9 +39,11 @@ export default class ListTools extends Component {
                     </select>
 
                     <select onChange = {this.props.sortOrderChange}>
-                        <option value="ascending">Ascending Order</option>
-                        <option value="descending">Descending Order</option>
+                        <option value="asc">Ascending Order</option>
+                        <option value="desc">Descending Order</option>
                     </select>
+
+                    <button onClick={this.props.buttonHandler}>Submit</button>
                 </div>
             </div>
         )
