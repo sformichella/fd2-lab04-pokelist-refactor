@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PokemonFrame from './PokemonFrame.js'
+import PokemonFrame from './PokemonFrame.js';
 
 export default class PokeList extends Component {
     render() {
