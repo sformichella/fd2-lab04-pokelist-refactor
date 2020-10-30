@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PokemonFrame from './PokemonFrame.js';
+import pokemonFrame from './pokemonFrame.js';
 
 export default class PokeList extends Component {
     render() {
@@ -7,7 +7,7 @@ export default class PokeList extends Component {
             <div className="poke-list flex-row">
                 {
                     this.props.data.map(poke => {
-                        return <PokemonFrame 
+                        return <pokemonFrame 
                             name = {poke.pokemon}
                             image = {poke.url_image}
                             typeOne = {poke.type_1}
