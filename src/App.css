@@ -1,0 +1,106 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.home-main {
+  justify-content: center;
+
+  text-align: center;
+}
+
+.list-page-main {
+  justify-content: space-between;
+}
+
+.link-div {
+  justify-content: center;
+}
+
+.header {
+  border-bottom: solid 1px black;
+}
+
+.header * {
+  margin: 0 10px;
+  justify-content: flex-start;
+}
+
+.poke-list {
+  flex-wrap: wrap;
+
+  width: 75%;
+}
+
+.list-tools {
+  width: 25%;
+}
+
+.pokemon-frame {
+  width: 160px;
+  height: 90px;
+
+  font-size: 0.6em;
+
+  border: solid 1px blue;
+
+  margin: 5px;
+}
+
+.pokemon-frame ul {
+  padding: 0;
+  margin: 0 10px;
+}
+
+.pokemon-frame li {
+  max-width: 80px;
+}
+
+.pokemon-frame img {
+  width: 40%;
+}
