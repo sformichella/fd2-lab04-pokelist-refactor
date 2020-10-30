@@ -5,7 +5,7 @@ export default class ListTools extends Component {
         return (
             <div className="flex-col list-tools">
                 <p>Filter By Search</p>
-                <input />
+                <input onChange={this.props.handler}/>
             </div>
         )
     }

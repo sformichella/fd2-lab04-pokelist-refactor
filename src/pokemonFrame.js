@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class pokemonFrame extends Component {
     render() {
         return (
-            <div class="pokemon-frame">
+            <div className="pokemon-frame">
                 <div>{this.props.name}</div>
                 <div className="flex-row">
                     <img src={this.props.image} alt=""></img>
