@@ -10,8 +10,8 @@ export default class ListPage extends Component {
         pokeData: [],
         searchInput: '',
         searchParam: 'pokemon',
-        sortOrder: '',
-        sortType: '',
+        sortOrder: 'ascending',
+        sortType: 'pokemon',
     }
 
     handleTextInputChange = e => {
@@ -24,22 +24,46 @@ export default class ListPage extends Component {
         this.setState({
             searchParam: e.target.value
         })
-        console.log(e.target.value);
     }
 
     handleButtonSubmit = async () => {
         await this.fetchPokemon()
     }
 
-    handlerSortOrder = e => {
+    handleSortOrder = e => {
+        
+        const order = e.target.value;
+        const type = this.state.sortType;
+        
         this.setState({
-            sortOrder: e.target.value
+            sortOrder: order
         })
+
+        this.updateDataSort(type, order)
     }
 
     handleSortType = e => {
+        const type = e.target.value;
+        const order = this.state.sortOrder;
+
         this.setState({
-            sortType: e.target.value
+            sortType: type
+        })
+
+        this.updateDataSort(type, order)
+    }
+
+    updateDataSort = (type, order) => {
+        this.setState({
+            pokeData: this.state.pokeData.sort((a, b) => {
+                if (!order) {
+                    return true
+                } else if (order === 'ascending') {
+                    return a[type] > b[type]
+                } else {
+                    return a[type] < b[type]
+                }
+            })
         })
     }
 
@@ -67,6 +91,8 @@ export default class ListPage extends Component {
                         sortOrderHandler = {this.handlerSortOrder}
                         buttonHandler = {this.handleButtonSubmit}
                         searchParamChange = {this.handleSearchParamChange}
+                        sortTypeChange = {this.handleSortType}
+                        sortOrderChange = {this.handleSortOrder}
                     />
                     <PokeList
                         data = {this.state.pokeData}
