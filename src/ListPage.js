@@ -25,7 +25,6 @@ export default class ListPage extends Component {
             searchParam: e.target.value
         })
     }
-
     
     handleSortOrder = e => {
         this.setState({

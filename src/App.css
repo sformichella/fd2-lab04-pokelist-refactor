@@ -48,6 +48,11 @@
   flex-direction: row;
 }
 
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
 .home-main {
   justify-content: center;
 
@@ -74,6 +79,7 @@
 .poke-list {
   flex-wrap: wrap;
 
+  min-height: 300px;
   width: 75%;
 }
 
