@@ -20,6 +20,13 @@ export default class ListPage extends Component {
         });
     }
 
+    handleSearchParamChange = e => {
+        this.setState({
+            searchParam: e.target.value
+        })
+        console.log(e.target.value);
+    }
+
     handleButtonSubmit = async () => {
         await this.fetchPokemon()
     }
@@ -59,6 +66,7 @@ export default class ListPage extends Component {
                         sortTypeHanlder = {this.handlerSortType}
                         sortOrderHandler = {this.handlerSortOrder}
                         buttonHandler = {this.handleButtonSubmit}
+                        searchParamChange = {this.handleSearchParamChange}
                     />
                     <PokeList
                         data = {this.state.pokeData}
