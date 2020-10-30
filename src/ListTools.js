@@ -5,11 +5,32 @@ export default class ListTools extends Component {
         return (
             <div className="flex-col list-tools">
                 <p>Filter By Search</p>
+                <div>
+                    <input
+                        type="radio" 
+                        name="search-params"
+                        value="pokemon"
+                        onChange = {this.props.searchParamChange}
+                    />Name
+                    <input
+                        type="radio"
+                        name="search-params"
+                        value="type_1"
+                        onChange = {this.props.searchParamChange}
+                    />Type One
+                    <input
+                        type="radio"
+                        name="search-params"
+                        value="type_2"
+                        onChange = {this.props.searchParamChange}
+                    />Type Two
+                </div>
                 <input onChange={this.props.inputHandler}/>
-                <button onClick={this.props.buttonHandler}>Submit</button>
                 <p>Sort By Attribute</p>
                 <div>
-                    <select>
+                    <select onChange={this.props.sortTypeChange}>
+                        <option value="">None</option>
+                        <option value="pokemon">Name</option>
                         <option value="type_1">Type One</option>
                         <option value="type_2">Type Two</option>
                         <option value="hp">Health</option>
@@ -17,10 +38,12 @@ export default class ListTools extends Component {
                         <option value="defense">Defense</option>
                     </select>
 
-                    <select>
-                        <option value="ascending">Ascending Order</option>
-                        <option value="descending">Descending Order</option>
+                    <select onChange = {this.props.sortOrderChange}>
+                        <option value="asc">Ascending Order</option>
+                        <option value="desc">Descending Order</option>
                     </select>
+
+                    <button onClick={this.props.buttonHandler}>Submit</button>
                 </div>
             </div>
         )

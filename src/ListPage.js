@@ -10,8 +10,8 @@ export default class ListPage extends Component {
         pokeData: [],
         searchInput: '',
         searchParam: 'pokemon',
-        sortOrder: '',
-        sortType: '',
+        sortOrder: 'ascending',
+        sortType: 'pokemon',
     }
 
     handleTextInputChange = e => {
@@ -20,20 +20,26 @@ export default class ListPage extends Component {
         });
     }
 
-    handleButtonSubmit = async () => {
-        await this.fetchPokemon()
+    handleSearchParamChange = e => {
+        this.setState({
+            searchParam: e.target.value
+        })
     }
-
-    handlerSortOrder = e => {
+    
+    handleSortOrder = e => {
         this.setState({
             sortOrder: e.target.value
         })
     }
-
+    
     handleSortType = e => {
         this.setState({
             sortType: e.target.value
         })
+    }
+    
+    handleButtonSubmit = async () => {
+        await this.fetchPokemon()
     }
 
     componentDidMount = async () => {
@@ -41,7 +47,11 @@ export default class ListPage extends Component {
     }
 
     fetchPokemon = async () => {
-        const pokeData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?${this.state.searchParam}=${this.state.searchInput}`)
+        this.setState({
+            pokeData: []
+        })
+
+        const pokeData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?${this.state.searchParam}=${this.state.searchInput}&sort=${this.state.sortType}&direction=${this.state.sortOrder}`)
 
         this.setState({
             pokeData: pokeData.body.results
@@ -59,6 +69,9 @@ export default class ListPage extends Component {
                         sortTypeHanlder = {this.handlerSortType}
                         sortOrderHandler = {this.handlerSortOrder}
                         buttonHandler = {this.handleButtonSubmit}
+                        searchParamChange = {this.handleSearchParamChange}
+                        sortTypeChange = {this.handleSortType}
+                        sortOrderChange = {this.handleSortOrder}
                     />
                     <PokeList
                         data = {this.state.pokeData}
