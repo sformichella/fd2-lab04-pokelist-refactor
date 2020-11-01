@@ -26,24 +26,28 @@ export default class ListPage extends Component {
         })
     }
     
-    handleSortOrder = e => {
-        this.setState({
+    handleSortOrder = async e => {
+        await this.setState({
             sortOrder: e.target.value
         })
+
+        this.fetchPokemon();
     }
     
-    handleSortType = e => {
-        this.setState({
+    handleSortType = async (e) => {
+        await this.setState({
             sortType: e.target.value
         })
+
+        this.fetchPokemon();
     }
     
     handleButtonSubmit = async () => {
-        await this.fetchPokemon()
+        await this.fetchPokemon();
     }
 
     componentDidMount = async () => {
-        await this.fetchPokemon()
+        await this.fetchPokemon();
     }
 
     fetchPokemon = async () => {
@@ -72,6 +76,7 @@ export default class ListPage extends Component {
                         searchParamChange = {this.handleSearchParamChange}
                         sortTypeChange = {this.handleSortType}
                         sortOrderChange = {this.handleSortOrder}
+                        searchParam = {this.state.searchParam}
                     />
                     <PokeList
                         data = {this.state.pokeData}

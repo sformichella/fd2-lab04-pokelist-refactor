@@ -5,25 +5,30 @@ export default class ListTools extends Component {
         return (
             <div className="flex-col list-tools">
                 <p>Filter By Search</p>
-                <div>
-                    <input
-                        type="radio" 
-                        name="search-params"
-                        value="pokemon"
-                        onChange = {this.props.searchParamChange}
-                    />Name
-                    <input
-                        type="radio"
-                        name="search-params"
-                        value="type_1"
-                        onChange = {this.props.searchParamChange}
-                    />Type One
-                    <input
-                        type="radio"
-                        name="search-params"
-                        value="type_2"
-                        onChange = {this.props.searchParamChange}
-                    />Type Two
+                <div>   
+                    {
+                        ['pokemon', 'type_1', 'type_2'].map(param => {
+                            if (this.props.searchParam === param) {
+                                return <label key={param}>
+                                    <input 
+                                        defaultChecked
+                                        type="radio"
+                                        name="search-params"
+                                        value={param}
+                                        onChange = {this.props.searchParamChange}
+                                    /> {param}
+                                </label>
+                            }
+                            return <label key={param}>
+                                <input 
+                                    type="radio"
+                                    name="search-params"
+                                    value={param}
+                                    onChange = {this.props.searchParamChange}
+                                /> {param}
+                            </label>
+                        })
+                    }
                 </div>
                 <input onChange={this.props.inputHandler}/>
                 <p>Sort By Attribute</p>
