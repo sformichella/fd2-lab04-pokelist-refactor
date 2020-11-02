@@ -12,6 +12,8 @@ export default class ListPage extends Component {
         searchParam: 'pokemon',
         sortOrder: 'ascending',
         sortType: 'pokemon',
+        currentPage: 1,
+        perPage: 20,
     }
 
     handleTextInputChange = e => {
@@ -55,7 +57,7 @@ export default class ListPage extends Component {
             pokeData: []
         })
 
-        const pokeData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?${this.state.searchParam}=${this.state.searchInput}&sort=${this.state.sortType}&direction=${this.state.sortOrder}`)
+        const pokeData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?${this.state.searchParam}=${this.state.searchInput}&sort=${this.state.sortType}&direction=${this.state.sortOrder}&page=${this.state.currentPage}&perPage=${this.state.perPage}`)
 
         this.setState({
             pokeData: pokeData.body.results
@@ -66,12 +68,32 @@ export default class ListPage extends Component {
         this.props.history.push(`/pokelist/${pokeId}`);
     }
 
+    handlePaging = async (direction) => {
+        if (direction === 'next') {
+            await this.setState({
+                currentPage: this.state.currentPage + 1
+            })
+
+            this.fetchPokemon()
+        }
+
+        if (direction === 'prev') {
+            await this.setState({
+                currentPage: this.state.currentPage - 1
+            })
+
+            this.fetchPokemon()
+        }
+    }
+
     render() {
+        console.log(this.state.currentPage);
         return (
             <div>
                 <Header title="Pokemon List"/>
                 <div className="list-page-main flex-row">
                     <ListTools 
+                        data = {this.state.pokeData}
                         inputHandler = {this.handleTextInputChange}
                         sortTypeHanlder = {this.handlerSortType}
                         sortOrderHandler = {this.handlerSortOrder}
@@ -80,6 +102,9 @@ export default class ListPage extends Component {
                         sortTypeChange = {this.handleSortType}
                         sortOrderChange = {this.handleSortOrder}
                         searchParam = {this.state.searchParam}
+                        pagingHandler = {this.handlePaging}
+                        currentPage = {this.state.currentPage}
+                        perPage = {this.state.perPage}
                     />
                     <PokeList
                         data = {this.state.pokeData}
