@@ -110,3 +110,7 @@
 .pokemon-frame img {
   width: 40%;
 }
+
+.pokemon-detailed h1 {
+  text-align: center;
+}
