@@ -63,7 +63,7 @@ export default class ListPage extends Component {
     }
 
     handlePokeFrameClick = (pokeId) => {
-        this.props.history.push(`/pokemon/${pokeId}`);
+        this.props.history.push(`/pokelist/${pokeId}`);
     }
 
     render() {

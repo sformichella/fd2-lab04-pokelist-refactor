@@ -9,7 +9,6 @@ export default class PokeList extends Component {
                 {
                     this.props.data.length === 0 ? <>Loadering<iframe title="blah" src="https://giphy.com/embed/3o7bu3XilJ5BOiSGic" width="480" height="480" frameBorder="0" className="giphy-embed" allowFullScreen></iframe></>
                     : this.props.data.map(poke => {
-                        console.log();
                         return <PokemonFrame 
                             name = {poke.pokemon}
                             key = {poke.pokemon}
