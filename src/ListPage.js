@@ -62,8 +62,11 @@ export default class ListPage extends Component {
         })
     }
 
-    render() {
+    handlePokeFrameClick = (pokeId) => {
+        this.props.history.push(`/pokemon/${pokeId}`);
+    }
 
+    render() {
         return (
             <div>
                 <Header title="Pokemon List"/>
@@ -80,6 +83,7 @@ export default class ListPage extends Component {
                     />
                     <PokeList
                         data = {this.state.pokeData}
+                        pokeFrameClickHandler = {this.handlePokeFrameClick}
                     />
                 </div>
             </div>

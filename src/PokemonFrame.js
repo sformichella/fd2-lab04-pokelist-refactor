@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 export default class PokemonFrame extends Component {
     render() {
         return (
-            <div className="pokemon-frame">
+            <div
+                className="pokemon-frame"
+                onClick = {() => this.props.pokeFrameClickHandler(this.props.pokeId)}
+            >
                 <div>{this.props.name}</div>
                 <div className="flex-row">
                     <img src={this.props.image} alt=""></img>

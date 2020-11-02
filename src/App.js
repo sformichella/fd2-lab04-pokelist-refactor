@@ -22,7 +22,12 @@ export default class App extends Component {
               render = {(routerProps) => <Home {...routerProps}/>}
             />
             <Route 
-              path="/pokelist"
+              path="/pokelist/"
+              exact
+              render = {(routerProps) => <ListPage {...routerProps}/>}
+            />
+            <Route 
+              path="/pokelist/:pokeId"
               exact
               render = {(routerProps) => <ListPage {...routerProps}/>}
             />
