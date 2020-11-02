@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import Home from './Home.js';
 import ListPage from './ListPage.js';
+import DetailPage from './DetailPage.js'
 
 
 export default class App extends Component {
@@ -22,9 +23,14 @@ export default class App extends Component {
               render = {(routerProps) => <Home {...routerProps}/>}
             />
             <Route 
-              path="/pokelist"
+              path="/pokelist/"
               exact
               render = {(routerProps) => <ListPage {...routerProps}/>}
+            />
+            <Route 
+              path="/pokelist/:pokeId"
+              exact
+              render = {(routerProps) => <DetailPage {...routerProps}/>}
             />
           </Switch>
         </Router>

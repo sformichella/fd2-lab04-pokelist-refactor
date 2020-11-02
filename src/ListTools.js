@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 export default class ListTools extends Component {
     render() {
+        console.log(this.props.data);
         return (
             <div className="flex-col list-tools">
                 <p>Filter By Search</p>
@@ -49,6 +50,21 @@ export default class ListTools extends Component {
                     </select>
 
                     <button onClick={this.props.buttonHandler}>Submit</button>
+
+                    <div className="page-buttons">
+                        <button
+                            onClick={() => this.props.pagingHandler('prev')}
+                            disabled={
+                                this.props.currentPage === 1 ? true : false
+                            }
+                        >Prev Page</button>
+                        <button
+                            onClick={() => this.props.pagingHandler('next')}
+                            disabled={
+                                this.props.currentPage === Math.ceil(this.props.data.count / this.props.perPage) ? true : false
+                            }
+                        >Next Page</button>
+                    </div>
                 </div>
             </div>
         )

@@ -1,0 +1,17 @@
+.pokemon-detailed {
+    border: solid 3px green;
+
+    margin: 10px;
+}
+
+.pokemon-detailed h1 {
+    text-align: center;
+}
+
+.pokemon-detailed li {
+    font-size: 2em;
+}
+
+.frame-body {
+    align-items: center;
+}
