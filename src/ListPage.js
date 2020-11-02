@@ -60,7 +60,7 @@ export default class ListPage extends Component {
         const pokeData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?${this.state.searchParam}=${this.state.searchInput}&sort=${this.state.sortType}&direction=${this.state.sortOrder}&page=${this.state.currentPage}&perPage=${this.state.perPage}`)
 
         this.setState({
-            pokeData: pokeData.body.results
+            pokeData: pokeData.body
         })
     }
 
